@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "summary": "helpful summary of your project, less than 80 characters",
-  "repository": "https://github.com/USER/PROJECT.git",
+  "summary": "Elm Html that is based on Incremental Dom(https://github.com/google/incremental-dom).",
+  "repository": "https://github.com/suryagaddipati/elm-html.git",
   "license": "BSD3",
   "source-directories": [
     "src"
