@@ -160,7 +160,7 @@
 	      });
 	      return node;
 	    },
-	    // attribute: F2(attribute),
+	    attribute: F2(attribute),
 	    property: F2(property),
 	    lazy: F2(_LazyJs2['default'].lazyRef),
 	    lazy2: F3(_LazyJs2['default'].lazyRef2),

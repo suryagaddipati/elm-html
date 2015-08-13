@@ -114,7 +114,7 @@ function incrementalDOM(Elm){
       });
       return node;
     },
-    // attribute: F2(attribute),
+    attribute: F2(attribute),
     property: F2(property),
     lazy: F2(Lazy.lazyRef),
     lazy2: F3(Lazy.lazyRef2),
