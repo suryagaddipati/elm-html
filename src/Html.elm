@@ -1,20 +1,127 @@
-module Html where 
+module Html where
+{-| This file is organized roughly in order of popularity. The tags which you'd
+expect to use frequently will be closer to the top.
+
+# Custom Nodes
+@docs text, node, Html, Attribute
+
+# Conversions
+@docs toElement, fromElement
+
+# Headers
+@docs h1, h2, h3, h4, h5, h6
+
+# Grouping Content
+@docs div, p, hr, pre, blockquote
+
+# Text
+@docs span, a, code, em, strong, i, b, u, sub, sup, br
+
+# Lists
+@docs ol, ul, li, dl, dt, dd
+
+# Emdedded Content
+@docs img, iframe, canvas, svg, math
+
+# Inputs
+@docs form, input, textarea, button, select, option
+
+# Sections
+@docs section, nav, article, aside, header, footer, address, main', body
+
+# Figures
+@docs figure, figcaption
+
+# Tables
+@docs table, caption, colgroup, col, tbody, thead, tfoot, tr, td, th
+
+
+# Less Common Elements
+
+## Less Common Inputs
+@docs fieldset, legend, label, datalist, optgroup, keygen, output, progress, meter
+
+
+## Audio and Video
+@docs audio, video, source, track
+
+## Embedded Objects
+@docs embed, object, param
+
+## Text Edits
+@docs ins, del
+
+## Semantic Text
+@docs small, cite, dfn, abbr, time, var, samp, kbd, s, q
+
+## Less Common Text Tags
+@docs mark, ruby, rt, rp, bdi, bdo, wbr
+
+# Interactive Elements
+@docs details, summary, menuitem, menu
+
+-}
+
 import Graphics.Element exposing (Element)
-import VirtualDom exposing (Property)
+import VirtualDom
+
+
+{-| The core building block used to build up HTML. It is backed by
+`VirtualDom.Node` in `evancz/virtual-dom` but that is not a super crucial
+detail.
+-}
 type alias Html = VirtualDom.Node
 
+
+{-| Set attributes on your `Html`.
+-}
 type alias Attribute = VirtualDom.Property
 
+
+{-| General way to create HTML nodes. It is used to define all of the helper
+functions in this library.
+
+    div : List Attribute -> List Html -> Html
+    div attributes children =
+        node "div" attributes children
+
+You can use this to create custom nodes if you need to create something that
+is not covered by the helper functions in this library.
+-}
+node : String -> List Attribute -> List Html -> Html
+node =
+    VirtualDom.node
+
+
+{-| Just put plain text in the DOM. It will escape the string so that it appears
+exactly as you specify.
+
+      text "Hello World!"
+-}
 text : String -> Html
 text =
-      VirtualDom.text
-
-node : String -> List Property -> List Html -> Html
-node =
-      VirtualDom.node
+    VirtualDom.text
 
 
-      
+{-| Embed HTML in Elements. Useful if your app is written primarily with
+Elements, but you need to switch over to HTML for some small section.
+-}
+toElement : Int -> Int -> Html -> Element
+toElement =
+    VirtualDom.toElement
+
+
+{-| Embed Elements in HTML. Useful if you have some component written with
+Elements or that uses `collage` that you want to embed in a larger HTML
+component.
+-}
+fromElement : Element -> Html
+fromElement =
+    VirtualDom.fromElement
+
+
+-- SECTIONS
+
 {-| Represents the content of an HTML document. There is only one `body`
 element in a document.
 -}
